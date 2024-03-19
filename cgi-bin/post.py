@@ -1,18 +1,18 @@
 #!/usr/bin/python3
 
 import datetime
-import cgi
 import sys
 
-print("HTTP/1.1 200 OK")
-print("Content-type: text/html\r\n\r\n")
-print("<html>")
-print("<head>")
-print("</head>")
-print("<body>")
-print("<h1>", datetime.datetime.strftime(datetime.datetime.now(), "%H:%M:%S"), "</h1>")
-print("</body>")
-print("</html>")
+response_body = "<html><head></head><body><h1>" + datetime.datetime.strftime(datetime.datetime.now(), "%H:%M:%S") + "</h1></body></html>"
+
+# Длина ответа
+content_length = len(response_body)
+
+print("HTTP/1.1 201 OK")
+print("Content-Type: text/html")
+print("Content-Length:", content_length)
+print()  # Пустая строка, разделяющая заголовки и тело ответа
+print(response_body)
 
 # Закрываем стандартный вывод, чтобы веб-сервер понял, что ответ завершен
 sys.stdout.close()
